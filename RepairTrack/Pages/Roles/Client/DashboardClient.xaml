@@ -1,0 +1,43 @@
+﻿<Page x:Class="RepairTrack.Pages.Roles.Client.DashboardClient"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RepairTrack.Pages.Roles.Client"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="DashboardClient">
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="9*"/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+
+		<DataGrid Name="DataGrid_RequestList" AutoGenerateColumns="False">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Дата заказа" Binding="{Binding DateAdded, StringFormat=dd.MM.yy}" />
+				<DataGridTextColumn Header="Оборудование" Binding="{Binding Device.TypeDevice.Name}"/>
+				<DataGridTextColumn Header="Причина" Binding="{Binding Issue.Name}"/>
+				<DataGridTextColumn Header="Описание" Binding="{Binding Description}"/>
+				<DataGridTextColumn Header="Статус"  Binding="{Binding Statuses.Name}"/>
+				<DataGridTextColumn Header="Дата заверщение работы" Binding="{Binding Deadline, StringFormat=dd.MM.yy}"/>
+				<DataGridTemplateColumn> <!--Кнопка просмотра-->
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<Button Click="RequestCheck_Click">
+								<TextBlock Text="Просмотр"/>
+							</Button>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn> 
+			</DataGrid.Columns>
+		</DataGrid>
+
+		<StackPanel Grid.Row="1" Orientation="Horizontal">
+			<Button Content="подать заявку" Click="CreateRequest_Click"/>
+			<Button Content="Обновить таблицу" Click="RefreshTable_Click"/>
+		</StackPanel>
+		
+	</Grid>
+</Page>

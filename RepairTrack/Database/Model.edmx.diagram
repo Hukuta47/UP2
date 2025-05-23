@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5649aea537bb47a3a085b071814df3b4" Name="Diagram1" ZoomLevel="55">
+        <EntityTypeShape EntityType="RepairTrackDBModel.Comments" Width="1.5" PointX="9.75" PointY="8.875" />
+        <EntityTypeShape EntityType="RepairTrackDBModel.Device" Width="1.5" PointX="5.25" PointY="12" />
+        <EntityTypeShape EntityType="RepairTrackDBModel.Feedback" Width="1.5" PointX="9.75" PointY="16.5" />
+        <EntityTypeShape EntityType="RepairTrackDBModel.Issue" Width="1.5" PointX="0.75" PointY="6.25" />
+        <EntityTypeShape EntityType="RepairTrackDBModel.Request" Width="1.5" PointX="7.5" PointY="7.625" />
+        <EntityTypeShape EntityType="RepairTrackDBModel.Role" Width="1.5" PointX="10.5" PointY="6.25" />
+        <EntityTypeShape EntityType="RepairTrackDBModel.Statuses" Width="1.5" PointX="5.25" PointY="8" />
+        <EntityTypeShape EntityType="RepairTrackDBModel.TypeDevice" Width="1.5" PointX="3" PointY="12" />
+        <EntityTypeShape EntityType="RepairTrackDBModel.Users" Width="1.5" PointX="12.75" PointY="8.5" />
+        <AssociationConnector Association="RepairTrackDBModel.FK_Comments_Request" />
+        <AssociationConnector Association="RepairTrackDBModel.FK_Comments_Users" />
+        <AssociationConnector Association="RepairTrackDBModel.FK_Device_TypeDevice" />
+        <AssociationConnector Association="RepairTrackDBModel.FK_Request_Device" />
+        <AssociationConnector Association="RepairTrackDBModel.FK_Feedback_Request" />
+        <AssociationConnector Association="RepairTrackDBModel.FK_Request_Issue" />
+        <AssociationConnector Association="RepairTrackDBModel.FK_Request_Executor" />
+        <AssociationConnector Association="RepairTrackDBModel.FK_Request_Manager" />
+        <AssociationConnector Association="RepairTrackDBModel.FK_Request_Statuses" />
+        <AssociationConnector Association="RepairTrackDBModel.FK_Request_Users" />
+        <AssociationConnector Association="RepairTrackDBModel.FK_Users_Role" />
+        <AssociationConnector Association="RepairTrackDBModel.Request_Users" />
+        <AssociationConnector Association="RepairTrackDBModel.TypeDevice_Issue" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

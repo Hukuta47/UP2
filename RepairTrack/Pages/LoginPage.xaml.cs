@@ -1,5 +1,7 @@
 ﻿using RepairTrack.Database;
 using RepairTrack.Pages.Roles.Client;
+using RepairTrack.Pages.Roles.Manager;
+using RepairTrack.Pages.Roles.Technician;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,9 +40,10 @@ namespace RepairTrack.Pages
                     switch (User.Role.Name)
                     {
                         case "Техник":
-                            
+                            PageManager.FrameMain.Navigate(new DashboardTechnicianPage(User));
                             break;
                         case "Менеджер":
+                            PageManager.FrameMain.Navigate(new DashboardManagerPage());
                             break;
                         case "Клиент":
                             PageManager.FrameMain.Navigate(new DashboardClient(User));

@@ -14,7 +14,7 @@
 			<RowDefinition/>
 		</Grid.RowDefinitions>
 
-		<DataGrid Name="DataGrid_RequestList" AutoGenerateColumns="False">
+		<DataGrid Name="DataGrid_RequestList" AutoGenerateColumns="False" IsReadOnly="True">
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="Дата заказа" Binding="{Binding DateAdded, StringFormat=dd.MM.yy}" />
 				<DataGridTextColumn Header="Оборудование" Binding="{Binding Device.TypeDevice.Name}"/>

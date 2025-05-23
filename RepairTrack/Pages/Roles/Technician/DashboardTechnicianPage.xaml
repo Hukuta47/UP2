@@ -9,20 +9,28 @@
       Title="DashboardTechnicianPage">
 
     <Grid>
-		<DataGrid Name="DataGrid_RequestList" AutoGenerateColumns="False">
+		<DataGrid Name="DataGrid_RequestList" AutoGenerateColumns="False" IsReadOnly="True">
 			<DataGrid.Columns>
-				<DataGridTextColumn Header="Дата заказа" Binding="{Binding DateAdded, StringFormat=dd.MM.yy}" />
-				<DataGridTextColumn Header="Оборудование" Binding="{Binding Device.TypeDevice.Name}"/>
-				<DataGridTextColumn Header="Причина" Binding="{Binding Issue.Name}"/>
+				<DataGridTextColumn Header="Устройство" Binding="{Binding Device.TypeDevice.Name}" />
+				<DataGridTextColumn Header="Проблема" Binding="{Binding Issue.Name}"/>
 				<DataGridTextColumn Header="Описание" Binding="{Binding Description}"/>
-				<DataGridTextColumn Header="Статус"  Binding="{Binding Statuses.Name}"/>
-				<DataGridTextColumn Header="Дата заверщение работы" Binding="{Binding Deadline, StringFormat=dd.MM.yy}"/>
+				<DataGridTextColumn Header="Дэдлайн" Binding="{Binding Deadline, StringFormat=dd.MM.yy}"/>
 				<DataGridTemplateColumn>
 					<!--Кнопка просмотра-->
 					<DataGridTemplateColumn.CellTemplate>
 						<DataTemplate>
-							<Button Click="RequestCheck_Click">
-								<TextBlock Text="Просмотр"/>
+							<Button>
+								<TextBlock Text="Завершить"/>
+							</Button>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+				<DataGridTemplateColumn>
+					<!--Кнопка просмотра-->
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<Button >
+								<TextBlock Text="Изменить"/>
 							</Button>
 						</DataTemplate>
 					</DataGridTemplateColumn.CellTemplate>

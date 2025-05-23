@@ -138,6 +138,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Roles\Manager\DashboardManagerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Roles\Technician\DashboardTechnicianPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -159,6 +163,9 @@
     </Compile>
     <Compile Include="Pages\Roles\Client\RequestFullInfoPage.xaml.cs">
       <DependentUpon>RequestFullInfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Roles\Manager\DashboardManagerPage.xaml.cs">
+      <DependentUpon>DashboardManagerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Roles\Technician\DashboardTechnicianPage.xaml.cs">
       <DependentUpon>DashboardTechnicianPage.xaml</DependentUpon>
@@ -196,9 +203,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pages\Roles\Manager\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Database\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

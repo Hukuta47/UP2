@@ -4,29 +4,29 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5649aea537bb47a3a085b071814df3b4" Name="Diagram1" ZoomLevel="55">
-        <EntityTypeShape EntityType="RepairTrackDBModel.Comments" Width="1.5" PointX="9.75" PointY="8.875" />
-        <EntityTypeShape EntityType="RepairTrackDBModel.Device" Width="1.5" PointX="5.25" PointY="12" />
-        <EntityTypeShape EntityType="RepairTrackDBModel.Feedback" Width="1.5" PointX="9.75" PointY="16.5" />
-        <EntityTypeShape EntityType="RepairTrackDBModel.Issue" Width="1.5" PointX="0.75" PointY="6.25" />
-        <EntityTypeShape EntityType="RepairTrackDBModel.Request" Width="1.5" PointX="7.5" PointY="7.625" />
-        <EntityTypeShape EntityType="RepairTrackDBModel.Role" Width="1.5" PointX="10.5" PointY="6.25" />
-        <EntityTypeShape EntityType="RepairTrackDBModel.Statuses" Width="1.5" PointX="5.25" PointY="8" />
-        <EntityTypeShape EntityType="RepairTrackDBModel.TypeDevice" Width="1.5" PointX="3" PointY="12" />
-        <EntityTypeShape EntityType="RepairTrackDBModel.Users" Width="1.5" PointX="12.75" PointY="8.5" />
-        <AssociationConnector Association="RepairTrackDBModel.FK_Comments_Request" />
-        <AssociationConnector Association="RepairTrackDBModel.FK_Comments_Users" />
-        <AssociationConnector Association="RepairTrackDBModel.FK_Device_TypeDevice" />
-        <AssociationConnector Association="RepairTrackDBModel.FK_Request_Device" />
-        <AssociationConnector Association="RepairTrackDBModel.FK_Feedback_Request" />
-        <AssociationConnector Association="RepairTrackDBModel.FK_Request_Issue" />
-        <AssociationConnector Association="RepairTrackDBModel.FK_Request_Executor" />
-        <AssociationConnector Association="RepairTrackDBModel.FK_Request_Manager" />
-        <AssociationConnector Association="RepairTrackDBModel.FK_Request_Statuses" />
-        <AssociationConnector Association="RepairTrackDBModel.FK_Request_Users" />
-        <AssociationConnector Association="RepairTrackDBModel.FK_Users_Role" />
-        <AssociationConnector Association="RepairTrackDBModel.Request_Users" />
-        <AssociationConnector Association="RepairTrackDBModel.TypeDevice_Issue" />
+      <Diagram DiagramId="6f4ec32a119a442796973d4525b9915f" Name="Diagram1">
+        <EntityTypeShape EntityType="RepairTrackDBModel.Comments" Width="1.5" PointX="9.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RepairTrackDBModel.Device" Width="1.5" PointX="5.25" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="RepairTrackDBModel.Feedback" Width="1.5" PointX="9.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RepairTrackDBModel.Issue" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RepairTrackDBModel.Request" Width="1.5" PointX="7.5" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RepairTrackDBModel.Role" Width="1.5" PointX="10.5" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RepairTrackDBModel.Statuses" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="RepairTrackDBModel.TypeDevice" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="RepairTrackDBModel.Users" Width="1.5" PointX="12.75" PointY="8.5" IsExpanded="true" />
+        <AssociationConnector Association="RepairTrackDBModel.FK_Comments_Request" ManuallyRouted="false" />
+        <AssociationConnector Association="RepairTrackDBModel.FK_Comments_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="RepairTrackDBModel.FK_Device_TypeDevice" ManuallyRouted="false" />
+        <AssociationConnector Association="RepairTrackDBModel.FK_Request_Device" ManuallyRouted="false" />
+        <AssociationConnector Association="RepairTrackDBModel.FK_Feedback_Request" ManuallyRouted="false" />
+        <AssociationConnector Association="RepairTrackDBModel.FK_Request_Issue" ManuallyRouted="false" />
+        <AssociationConnector Association="RepairTrackDBModel.FK_Request_Executor" ManuallyRouted="false" />
+        <AssociationConnector Association="RepairTrackDBModel.FK_Request_Manager" ManuallyRouted="false" />
+        <AssociationConnector Association="RepairTrackDBModel.FK_Request_Statuses" ManuallyRouted="false" />
+        <AssociationConnector Association="RepairTrackDBModel.FK_Request_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="RepairTrackDBModel.FK_Users_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="RepairTrackDBModel.Request_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="RepairTrackDBModel.TypeDevice_Issue" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

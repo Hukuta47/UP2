@@ -1,0 +1,34 @@
+﻿<Window x:Class="RepairTrack.Pages.Roles.Manager.SelectTechnicianWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RepairTrack.Pages.Roles.Manager"
+        mc:Ignorable="d"
+        Title="SelectTechnicianWindow" Height="450" Width="800">
+    <Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition Height="auto"/>
+		</Grid.RowDefinitions>
+
+
+		<DataGrid Name="DataGrid_SelectTechnician" AutoGenerateColumns="False" IsReadOnly="True">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Техник" Binding="{Binding TechnicianName}"/>
+				<DataGridTextColumn Header="Загруженность" Binding="{Binding RequestCount}"/>
+				<DataGridTemplateColumn>
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<Button Content="Выбрать" Click="SelectTechnician_Click"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+			</DataGrid.Columns>
+		</DataGrid>
+		<StackPanel Grid.Row="1" Orientation="Horizontal">
+			<Button Content="Отмена"/>
+			<Button Content="Выбрать"/>
+		</StackPanel>
+	</Grid>
+</Window>

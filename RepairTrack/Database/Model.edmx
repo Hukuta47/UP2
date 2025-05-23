@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище RepairTrackDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище RepairTrackDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Comments">
           <Key>
             <PropertyRef Name="CommentID" />
@@ -45,7 +45,7 @@
           <Property Name="DateAdded" Type="date" Nullable="false" />
           <Property Name="DeviceID" Type="int" Nullable="false" />
           <Property Name="IssueTypeID" Type="int" Nullable="false" />
-          <Property Name="Description" Type="text" Nullable="false" />
+          <Property Name="Description" Type="text" />
           <Property Name="ClientID" Type="int" Nullable="false" />
           <Property Name="StatusID" Type="int" Nullable="false" />
           <Property Name="ExecutorID" Type="int" />
@@ -291,9 +291,9 @@
         <Function Name="CreateRepairRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TypeID" Type="int" Mode="In" />
           <Parameter Name="IssueTypeID" Type="int" Mode="In" />
-          <Parameter Name="Description" Type="text" Mode="In" />
           <Parameter Name="ClientID" Type="int" Mode="In" />
         </Function>
+        <Function Name="GetTechniciansWithRequestCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="Хранилище RepairTrackDBModelContainer">
           <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Device" EntityType="Self.Device" Schema="dbo" store:Type="Tables" />
@@ -367,79 +367,11 @@
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RepairTrackDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="RepairTrackDBEntities" annotation:LazyLoadingEnabled="true">
-          <FunctionImport Name="CreateRepairRequest" ReturnType="Collection(Decimal)">
-            <Parameter Name="TypeID" Mode="In" Type="Int32" />
-            <Parameter Name="IssueTypeID" Mode="In" Type="Int32" />
-            <Parameter Name="Description" Mode="In" Type="String" />
-            <Parameter Name="ClientID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <EntitySet Name="Comments" EntityType="RepairTrackDBModel.Comments" />
-          <EntitySet Name="Device" EntityType="RepairTrackDBModel.Device" />
-          <EntitySet Name="Feedback" EntityType="RepairTrackDBModel.Feedback" />
-          <EntitySet Name="Issue" EntityType="RepairTrackDBModel.Issue" />
-          <EntitySet Name="Request" EntityType="RepairTrackDBModel.Request" />
-          <EntitySet Name="Role" EntityType="RepairTrackDBModel.Role" />
-          <EntitySet Name="Statuses" EntityType="RepairTrackDBModel.Statuses" />
-          <EntitySet Name="TypeDevice" EntityType="RepairTrackDBModel.TypeDevice" />
-          <EntitySet Name="Users" EntityType="RepairTrackDBModel.Users" />
-          <AssociationSet Name="FK_Comments_Request" Association="RepairTrackDBModel.FK_Comments_Request">
-            <End Role="Request" EntitySet="Request" />
-            <End Role="Comments" EntitySet="Comments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Comments_Users" Association="RepairTrackDBModel.FK_Comments_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Comments" EntitySet="Comments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Device_TypeDevice" Association="RepairTrackDBModel.FK_Device_TypeDevice">
-            <End Role="TypeDevice" EntitySet="TypeDevice" />
-            <End Role="Device" EntitySet="Device" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Request_Device" Association="RepairTrackDBModel.FK_Request_Device">
-            <End Role="Device" EntitySet="Device" />
-            <End Role="Request" EntitySet="Request" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Feedback_Request" Association="RepairTrackDBModel.FK_Feedback_Request">
-            <End Role="Request" EntitySet="Request" />
-            <End Role="Feedback" EntitySet="Feedback" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Request_Issue" Association="RepairTrackDBModel.FK_Request_Issue">
-            <End Role="Issue" EntitySet="Issue" />
-            <End Role="Request" EntitySet="Request" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Request_Executor" Association="RepairTrackDBModel.FK_Request_Executor">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Request" EntitySet="Request" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Request_Manager" Association="RepairTrackDBModel.FK_Request_Manager">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Request" EntitySet="Request" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Request_Statuses" Association="RepairTrackDBModel.FK_Request_Statuses">
-            <End Role="Statuses" EntitySet="Statuses" />
-            <End Role="Request" EntitySet="Request" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Request_Users" Association="RepairTrackDBModel.FK_Request_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Request" EntitySet="Request" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Users_Role" Association="RepairTrackDBModel.FK_Users_Role">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="Request_Users" Association="RepairTrackDBModel.Request_Users">
-            <End Role="Request" EntitySet="Request" />
-            <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="TypeDevice_Issue" Association="RepairTrackDBModel.TypeDevice_Issue">
-            <End Role="Issue" EntitySet="Issue" />
-            <End Role="TypeDevice" EntitySet="TypeDevice" />
-          </AssociationSet>
-        </EntityContainer>
         <EntityType Name="Comments">
           <Key>
             <PropertyRef Name="CommentID" />
@@ -447,10 +379,10 @@
           <Property Name="CommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RequestID" Type="Int32" Nullable="false" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="CommentText" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CommentText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CommentDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Request" Relationship="RepairTrackDBModel.FK_Comments_Request" FromRole="Comments" ToRole="Request" />
-          <NavigationProperty Name="Users" Relationship="RepairTrackDBModel.FK_Comments_Users" FromRole="Comments" ToRole="Users" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_Comments_Request" FromRole="Comments" ToRole="Request" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Comments_Users" FromRole="Comments" ToRole="Users" />
         </EntityType>
         <EntityType Name="Device">
           <Key>
@@ -459,8 +391,8 @@
           <Property Name="DeviceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TypeID" Type="Int32" Nullable="false" />
           <Property Name="SerialNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TypeDevice" Relationship="RepairTrackDBModel.FK_Device_TypeDevice" FromRole="Device" ToRole="TypeDevice" />
-          <NavigationProperty Name="Request" Relationship="RepairTrackDBModel.FK_Request_Device" FromRole="Device" ToRole="Request" />
+          <NavigationProperty Name="TypeDevice" Relationship="Self.FK_Device_TypeDevice" FromRole="Device" ToRole="TypeDevice" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_Request_Device" FromRole="Device" ToRole="Request" />
         </EntityType>
         <EntityType Name="Feedback">
           <Key>
@@ -468,16 +400,16 @@
           </Key>
           <Property Name="FeedbackID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RequestID" Type="Int32" />
-          <NavigationProperty Name="Request" Relationship="RepairTrackDBModel.FK_Feedback_Request" FromRole="Feedback" ToRole="Request" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_Feedback_Request" FromRole="Feedback" ToRole="Request" />
         </EntityType>
         <EntityType Name="Issue">
           <Key>
             <PropertyRef Name="IssueID" />
           </Key>
           <Property Name="IssueID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Request" Relationship="RepairTrackDBModel.FK_Request_Issue" FromRole="Issue" ToRole="Request" />
-          <NavigationProperty Name="TypeDevice" Relationship="RepairTrackDBModel.TypeDevice_Issue" FromRole="Issue" ToRole="TypeDevice" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_Request_Issue" FromRole="Issue" ToRole="Request" />
+          <NavigationProperty Name="TypeDevice" Relationship="Self.TypeDevice_Issue" FromRole="Issue" ToRole="TypeDevice" />
         </EntityType>
         <EntityType Name="Request">
           <Key>
@@ -487,7 +419,7 @@
           <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="DeviceID" Type="Int32" Nullable="false" />
           <Property Name="IssueTypeID" Type="Int32" Nullable="false" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ClientID" Type="Int32" Nullable="false" />
           <Property Name="StatusID" Type="Int32" Nullable="false" />
           <Property Name="ExecutorID" Type="Int32" />
@@ -495,63 +427,63 @@
           <Property Name="Deadline" Type="DateTime" Precision="0" />
           <Property Name="StartDate" Type="DateTime" Precision="3" />
           <Property Name="CompletionDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Comments" Relationship="RepairTrackDBModel.FK_Comments_Request" FromRole="Request" ToRole="Comments" />
-          <NavigationProperty Name="Device" Relationship="RepairTrackDBModel.FK_Request_Device" FromRole="Request" ToRole="Device" />
-          <NavigationProperty Name="Feedback" Relationship="RepairTrackDBModel.FK_Feedback_Request" FromRole="Request" ToRole="Feedback" />
-          <NavigationProperty Name="Issue" Relationship="RepairTrackDBModel.FK_Request_Issue" FromRole="Request" ToRole="Issue" />
-          <NavigationProperty Name="Users" Relationship="RepairTrackDBModel.FK_Request_Executor" FromRole="Request" ToRole="Users" />
-          <NavigationProperty Name="Users1" Relationship="RepairTrackDBModel.FK_Request_Manager" FromRole="Request" ToRole="Users" />
-          <NavigationProperty Name="Statuses" Relationship="RepairTrackDBModel.FK_Request_Statuses" FromRole="Request" ToRole="Statuses" />
-          <NavigationProperty Name="Users2" Relationship="RepairTrackDBModel.FK_Request_Users" FromRole="Request" ToRole="Users" />
-          <NavigationProperty Name="Users3" Relationship="RepairTrackDBModel.Request_Users" FromRole="Request" ToRole="Users" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Request" FromRole="Request" ToRole="Comments" />
+          <NavigationProperty Name="Device" Relationship="Self.FK_Request_Device" FromRole="Request" ToRole="Device" />
+          <NavigationProperty Name="Feedback" Relationship="Self.FK_Feedback_Request" FromRole="Request" ToRole="Feedback" />
+          <NavigationProperty Name="Issue" Relationship="Self.FK_Request_Issue" FromRole="Request" ToRole="Issue" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Request_Executor" FromRole="Request" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.FK_Request_Manager" FromRole="Request" ToRole="Users" />
+          <NavigationProperty Name="Statuses" Relationship="Self.FK_Request_Statuses" FromRole="Request" ToRole="Statuses" />
+          <NavigationProperty Name="Users2" Relationship="Self.FK_Request_Users" FromRole="Request" ToRole="Users" />
+          <NavigationProperty Name="Users3" Relationship="Self.Request_Users" FromRole="Request" ToRole="Users" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="RoleID" />
           </Key>
           <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Users" Relationship="RepairTrackDBModel.FK_Users_Role" FromRole="Role" ToRole="Users" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_Role" FromRole="Role" ToRole="Users" />
         </EntityType>
         <EntityType Name="Statuses">
           <Key>
             <PropertyRef Name="StatusID" />
           </Key>
           <Property Name="StatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Request" Relationship="RepairTrackDBModel.FK_Request_Statuses" FromRole="Statuses" ToRole="Request" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_Request_Statuses" FromRole="Statuses" ToRole="Request" />
         </EntityType>
         <EntityType Name="TypeDevice">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Device" Relationship="RepairTrackDBModel.FK_Device_TypeDevice" FromRole="TypeDevice" ToRole="Device" />
-          <NavigationProperty Name="Issue" Relationship="RepairTrackDBModel.TypeDevice_Issue" FromRole="TypeDevice" ToRole="Issue" />
+          <NavigationProperty Name="Device" Relationship="Self.FK_Device_TypeDevice" FromRole="TypeDevice" ToRole="Device" />
+          <NavigationProperty Name="Issue" Relationship="Self.TypeDevice_Issue" FromRole="TypeDevice" ToRole="Issue" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="UserID" />
           </Key>
           <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="RoleID" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ContactInfo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Comments" Relationship="RepairTrackDBModel.FK_Comments_Users" FromRole="Users" ToRole="Comments" />
-          <NavigationProperty Name="Request" Relationship="RepairTrackDBModel.FK_Request_Executor" FromRole="Users" ToRole="Request" />
-          <NavigationProperty Name="Request1" Relationship="RepairTrackDBModel.FK_Request_Manager" FromRole="Users" ToRole="Request" />
-          <NavigationProperty Name="Request2" Relationship="RepairTrackDBModel.FK_Request_Users" FromRole="Users" ToRole="Request" />
-          <NavigationProperty Name="Role" Relationship="RepairTrackDBModel.FK_Users_Role" FromRole="Users" ToRole="Role" />
-          <NavigationProperty Name="Request3" Relationship="RepairTrackDBModel.Request_Users" FromRole="Users" ToRole="Request" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Users" FromRole="Users" ToRole="Comments" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_Request_Executor" FromRole="Users" ToRole="Request" />
+          <NavigationProperty Name="Request1" Relationship="Self.FK_Request_Manager" FromRole="Users" ToRole="Request" />
+          <NavigationProperty Name="Request2" Relationship="Self.FK_Request_Users" FromRole="Users" ToRole="Request" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_Users_Role" FromRole="Users" ToRole="Role" />
+          <NavigationProperty Name="Request3" Relationship="Self.Request_Users" FromRole="Users" ToRole="Request" />
         </EntityType>
         <Association Name="FK_Comments_Request">
-          <End Type="RepairTrackDBModel.Request" Role="Request" Multiplicity="1" />
-          <End Type="RepairTrackDBModel.Comments" Role="Comments" Multiplicity="*" />
+          <End Role="Request" Type="Self.Request" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Request">
               <PropertyRef Name="RequestID" />
@@ -562,8 +494,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Comments_Users">
-          <End Type="RepairTrackDBModel.Users" Role="Users" Multiplicity="1" />
-          <End Type="RepairTrackDBModel.Comments" Role="Comments" Multiplicity="*" />
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="UserID" />
@@ -574,8 +506,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Device_TypeDevice">
-          <End Type="RepairTrackDBModel.TypeDevice" Role="TypeDevice" Multiplicity="1" />
-          <End Type="RepairTrackDBModel.Device" Role="Device" Multiplicity="*" />
+          <End Role="TypeDevice" Type="Self.TypeDevice" Multiplicity="1" />
+          <End Role="Device" Type="Self.Device" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TypeDevice">
               <PropertyRef Name="ID" />
@@ -586,8 +518,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Request_Device">
-          <End Type="RepairTrackDBModel.Device" Role="Device" Multiplicity="1" />
-          <End Type="RepairTrackDBModel.Request" Role="Request" Multiplicity="*" />
+          <End Role="Device" Type="Self.Device" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Device">
               <PropertyRef Name="DeviceID" />
@@ -598,8 +530,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Feedback_Request">
-          <End Type="RepairTrackDBModel.Request" Role="Request" Multiplicity="0..1" />
-          <End Type="RepairTrackDBModel.Feedback" Role="Feedback" Multiplicity="*" />
+          <End Role="Request" Type="Self.Request" Multiplicity="0..1" />
+          <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Request">
               <PropertyRef Name="RequestID" />
@@ -610,8 +542,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Request_Issue">
-          <End Type="RepairTrackDBModel.Issue" Role="Issue" Multiplicity="1" />
-          <End Type="RepairTrackDBModel.Request" Role="Request" Multiplicity="*" />
+          <End Role="Issue" Type="Self.Issue" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Issue">
               <PropertyRef Name="IssueID" />
@@ -622,8 +554,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Request_Executor">
-          <End Type="RepairTrackDBModel.Users" Role="Users" Multiplicity="0..1" />
-          <End Type="RepairTrackDBModel.Request" Role="Request" Multiplicity="*" />
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="UserID" />
@@ -634,8 +566,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Request_Manager">
-          <End Type="RepairTrackDBModel.Users" Role="Users" Multiplicity="0..1" />
-          <End Type="RepairTrackDBModel.Request" Role="Request" Multiplicity="*" />
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="UserID" />
@@ -646,8 +578,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Request_Statuses">
-          <End Type="RepairTrackDBModel.Statuses" Role="Statuses" Multiplicity="1" />
-          <End Type="RepairTrackDBModel.Request" Role="Request" Multiplicity="*" />
+          <End Role="Statuses" Type="Self.Statuses" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Statuses">
               <PropertyRef Name="StatusID" />
@@ -658,8 +590,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Request_Users">
-          <End Type="RepairTrackDBModel.Users" Role="Users" Multiplicity="1" />
-          <End Type="RepairTrackDBModel.Request" Role="Request" Multiplicity="*" />
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="UserID" />
@@ -670,8 +602,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Users_Role">
-          <End Type="RepairTrackDBModel.Role" Role="Role" Multiplicity="1" />
-          <End Type="RepairTrackDBModel.Users" Role="Users" Multiplicity="*" />
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Role">
               <PropertyRef Name="RoleID" />
@@ -682,128 +614,211 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Request_Users">
-          <End Type="RepairTrackDBModel.Request" Role="Request" Multiplicity="*" />
-          <End Type="RepairTrackDBModel.Users" Role="Users" Multiplicity="*" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
         </Association>
         <Association Name="TypeDevice_Issue">
-          <End Type="RepairTrackDBModel.Issue" Role="Issue" Multiplicity="*" />
-          <End Type="RepairTrackDBModel.TypeDevice" Role="TypeDevice" Multiplicity="*" />
+          <End Role="Issue" Type="Self.Issue" Multiplicity="*" />
+          <End Role="TypeDevice" Type="Self.TypeDevice" Multiplicity="*" />
         </Association>
-        </Schema>
+        <EntityContainer Name="RepairTrackDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Comments" EntityType="Self.Comments" />
+          <EntitySet Name="Device" EntityType="Self.Device" />
+          <EntitySet Name="Feedback" EntityType="Self.Feedback" />
+          <EntitySet Name="Issue" EntityType="Self.Issue" />
+          <EntitySet Name="Request" EntityType="Self.Request" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Statuses" EntityType="Self.Statuses" />
+          <EntitySet Name="TypeDevice" EntityType="Self.TypeDevice" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK_Comments_Request" Association="Self.FK_Comments_Request">
+            <End Role="Request" EntitySet="Request" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Users" Association="Self.FK_Comments_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Device_TypeDevice" Association="Self.FK_Device_TypeDevice">
+            <End Role="TypeDevice" EntitySet="TypeDevice" />
+            <End Role="Device" EntitySet="Device" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Device" Association="Self.FK_Request_Device">
+            <End Role="Device" EntitySet="Device" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedback_Request" Association="Self.FK_Feedback_Request">
+            <End Role="Request" EntitySet="Request" />
+            <End Role="Feedback" EntitySet="Feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Issue" Association="Self.FK_Request_Issue">
+            <End Role="Issue" EntitySet="Issue" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Executor" Association="Self.FK_Request_Executor">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Manager" Association="Self.FK_Request_Manager">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Statuses" Association="Self.FK_Request_Statuses">
+            <End Role="Statuses" EntitySet="Statuses" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Users" Association="Self.FK_Request_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Role" Association="Self.FK_Users_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="Request_Users" Association="Self.Request_Users">
+            <End Role="Request" EntitySet="Request" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="TypeDevice_Issue" Association="Self.TypeDevice_Issue">
+            <End Role="Issue" EntitySet="Issue" />
+            <End Role="TypeDevice" EntitySet="TypeDevice" />
+          </AssociationSet>
+          <FunctionImport Name="CreateRepairRequest" ReturnType="Collection(Decimal)">
+            <Parameter Name="TypeID" Mode="In" Type="Int32" />
+            <Parameter Name="IssueTypeID" Mode="In" Type="Int32" />
+            <Parameter Name="ClientID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetTechniciansWithRequestCount" ReturnType="Collection(RepairTrackDBModel.GetTechniciansWithRequestCount_Result)" />
+        </EntityContainer>
+        <ComplexType Name="GetTechniciansWithRequestCount_Result">
+          <Property Type="Int32" Name="TechnicianID" Nullable="false" />
+          <Property Type="String" Name="TechnicianName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="RequestCount" Nullable="true" />
+        </ComplexType>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище RepairTrackDBModelContainer" CdmEntityContainer="RepairTrackDBEntities">
-          <FunctionImportMapping FunctionImportName="CreateRepairRequest" FunctionName="Хранилище RepairTrackDBModel.CreateRepairRequest" />
           <EntitySetMapping Name="Comments">
             <EntityTypeMapping TypeName="RepairTrackDBModel.Comments">
               <MappingFragment StoreEntitySet="Comments">
-                <ScalarProperty Name="CommentDate" ColumnName="CommentDate" />
-                <ScalarProperty Name="CommentText" ColumnName="CommentText" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
                 <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CommentText" ColumnName="CommentText" />
+                <ScalarProperty Name="CommentDate" ColumnName="CommentDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Device">
             <EntityTypeMapping TypeName="RepairTrackDBModel.Device">
               <MappingFragment StoreEntitySet="Device">
-                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
-                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
                 <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Feedback">
             <EntityTypeMapping TypeName="RepairTrackDBModel.Feedback">
               <MappingFragment StoreEntitySet="Feedback">
-                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
                 <ScalarProperty Name="FeedbackID" ColumnName="FeedbackID" />
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Issue">
             <EntityTypeMapping TypeName="RepairTrackDBModel.Issue">
               <MappingFragment StoreEntitySet="Issue">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="IssueID" ColumnName="IssueID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Request">
             <EntityTypeMapping TypeName="RepairTrackDBModel.Request">
               <MappingFragment StoreEntitySet="Request">
-                <ScalarProperty Name="CompletionDate" ColumnName="CompletionDate" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="Deadline" ColumnName="Deadline" />
-                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
-                <ScalarProperty Name="ExecutorID" ColumnName="ExecutorID" />
-                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
-                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="IssueTypeID" ColumnName="IssueTypeID" />
-                <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
-                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
                 <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+                <ScalarProperty Name="IssueTypeID" ColumnName="IssueTypeID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="ExecutorID" ColumnName="ExecutorID" />
+                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+                <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="CompletionDate" ColumnName="CompletionDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Role">
             <EntityTypeMapping TypeName="RepairTrackDBModel.Role">
               <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Statuses">
             <EntityTypeMapping TypeName="RepairTrackDBModel.Statuses">
               <MappingFragment StoreEntitySet="Statuses">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TypeDevice">
             <EntityTypeMapping TypeName="RepairTrackDBModel.TypeDevice">
               <MappingFragment StoreEntitySet="TypeDevice">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="RepairTrackDBModel.Users">
               <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="ContactInfo" ColumnName="ContactInfo" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ContactInfo" ColumnName="ContactInfo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <AssociationSetMapping Name="Request_Users" TypeName="RepairTrackDBModel.Request_Users" StoreEntitySet="Request_Users">
-            <EndProperty Name="Users">
-              <ScalarProperty Name="UserID" ColumnName="Users_UserID" />
-            </EndProperty>
             <EndProperty Name="Request">
               <ScalarProperty Name="RequestID" ColumnName="Request_RequestID" />
             </EndProperty>
+            <EndProperty Name="Users">
+              <ScalarProperty Name="UserID" ColumnName="Users_UserID" />
+            </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="TypeDevice_Issue" TypeName="RepairTrackDBModel.TypeDevice_Issue" StoreEntitySet="TypeDevice_Issue">
-            <EndProperty Name="TypeDevice">
-              <ScalarProperty Name="ID" ColumnName="TypeDeviceID" />
-            </EndProperty>
             <EndProperty Name="Issue">
               <ScalarProperty Name="IssueID" ColumnName="IssueID" />
             </EndProperty>
+            <EndProperty Name="TypeDevice">
+              <ScalarProperty Name="ID" ColumnName="TypeDeviceID" />
+            </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="CreateRepairRequest" FunctionName="Хранилище RepairTrackDBModel.CreateRepairRequest" />
+          <FunctionImportMapping FunctionImportName="GetTechniciansWithRequestCount" FunctionName="Хранилище RepairTrackDBModel.GetTechniciansWithRequestCount">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RepairTrackDBModel.GetTechniciansWithRequestCount_Result">
+                <ScalarProperty Name="TechnicianID" ColumnName="TechnicianID" />
+                <ScalarProperty Name="TechnicianName" ColumnName="TechnicianName" />
+                <ScalarProperty Name="RequestCount" ColumnName="RequestCount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

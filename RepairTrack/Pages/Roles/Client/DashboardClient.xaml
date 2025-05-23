@@ -10,8 +10,8 @@
 
 	<Grid>
 		<Grid.RowDefinitions>
-			<RowDefinition Height="9*"/>
 			<RowDefinition/>
+			<RowDefinition Height="auto"/>
 		</Grid.RowDefinitions>
 
 		<DataGrid Name="DataGrid_RequestList" AutoGenerateColumns="False" IsReadOnly="True">

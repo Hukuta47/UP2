@@ -10,15 +10,15 @@
 
 	<Border Background="#ffffff">
 		<StackPanel>
-			<TextBlock Text="ФИО"/>
+			<TextBlock Text="ФИО" Style="{StaticResource Title}"/>
 			<TextBox Name="Textbox_Name"/>
-			<TextBlock Text="логин"/>
+			<TextBlock Text="Логин" Style="{StaticResource Title}"/>
 			<TextBox Name="Textbox_Username"/>
-			<TextBlock Text="пароль"/>
+			<TextBlock Text="Пароль" Style="{StaticResource Title}"/>
 			<PasswordBox Name="PasswordBox_FirstPassword"/>
-			<TextBlock Text="повторите пароль"/>
+			<TextBlock Text="Повторите пароль" Style="{StaticResource Title}"/>
 			<PasswordBox Name="PasswordBox_SecondPassword"/>
-			<TextBlock Text="контактные данные"/>
+			<TextBlock Text="Контактные данные" Style="{StaticResource Title}"/>
 			<TextBox Name="TextBox_ContactInfo"/>
 			<Button Content="регистрация" Click="Registration_Click"/>
 		</StackPanel>

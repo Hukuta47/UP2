@@ -4,6 +4,30 @@
              xmlns:local="clr-namespace:RepairTrack"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
-    </Application.Resources>
+		<Style TargetType="Button">
+			<Setter Property="FontSize" Value="16"/>
+			<Setter Property="Margin" Value="6"/>
+			<Setter Property="Padding" Value="6"/>
+			<Setter Property="Background" Value="#2B9CE3"/>
+			<Setter Property="Foreground" Value="#FFFFFF"/>
+		</Style>
+		<Style TargetType="TextBlock" x:Key="Title">
+			<Setter Property="FontSize" Value="16"/>
+			<Setter Property="FontWeight" Value="Medium"/>
+			<Setter Property="Margin" Value="6"/>
+			<Setter Property="Padding" Value="6"/>
+		</Style>
+		<Style TargetType="TextBox">
+			<Setter Property="FontSize" Value="16"/>
+			<Setter Property="FontWeight" Value="Medium"/>
+			<Setter Property="Margin" Value="6"/>
+			<Setter Property="Padding" Value="6"/>
+		</Style>
+		<Style TargetType="PasswordBox">
+			<Setter Property="FontSize" Value="16"/>
+			<Setter Property="FontWeight" Value="Medium"/>
+			<Setter Property="Margin" Value="6"/>
+			<Setter Property="Padding" Value="6"/>
+		</Style>
+	</Application.Resources>
 </Application>

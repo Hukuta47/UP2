@@ -19,7 +19,7 @@
 					<!--Кнопка просмотра-->
 					<DataGridTemplateColumn.CellTemplate>
 						<DataTemplate>
-							<Button>
+							<Button Click="CompleteRequest_Click">
 								<TextBlock Text="Завершить"/>
 							</Button>
 						</DataTemplate>
@@ -29,7 +29,7 @@
 					<!--Кнопка просмотра-->
 					<DataGridTemplateColumn.CellTemplate>
 						<DataTemplate>
-							<Button >
+							<Button Click="OpenRequest_Click">
 								<TextBlock Text="Изменить"/>
 							</Button>
 						</DataTemplate>

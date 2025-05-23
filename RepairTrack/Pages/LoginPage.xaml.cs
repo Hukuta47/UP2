@@ -43,7 +43,7 @@ namespace RepairTrack.Pages
                             PageManager.FrameMain.Navigate(new DashboardTechnicianPage(User));
                             break;
                         case "Менеджер":
-                            PageManager.FrameMain.Navigate(new DashboardManagerPage());
+                            PageManager.FrameMain.Navigate(new DashboardManagerPage(User));
                             break;
                         case "Клиент":
                             PageManager.FrameMain.Navigate(new DashboardClient(User));

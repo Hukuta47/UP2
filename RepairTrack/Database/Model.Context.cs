@@ -37,7 +37,7 @@ namespace RepairTrack.Database
         public virtual DbSet<TypeDevice> TypeDevice { get; set; }
         public virtual DbSet<Users> Users { get; set; }
     
-        public virtual ObjectResult<Nullable<decimal>> CreateRepairRequest(Nullable<int> typeID, Nullable<int> issueTypeID, string description, Nullable<int> clientID)
+        public virtual ObjectResult<Nullable<decimal>> CreateRepairRequest(Nullable<int> typeID, Nullable<int> issueTypeID, Nullable<int> clientID)
         {
             var typeIDParameter = typeID.HasValue ?
                 new ObjectParameter("TypeID", typeID) :
@@ -47,15 +47,16 @@ namespace RepairTrack.Database
                 new ObjectParameter("IssueTypeID", issueTypeID) :
                 new ObjectParameter("IssueTypeID", typeof(int));
     
-            var descriptionParameter = description != null ?
-                new ObjectParameter("Description", description) :
-                new ObjectParameter("Description", typeof(string));
-    
             var clientIDParameter = clientID.HasValue ?
                 new ObjectParameter("ClientID", clientID) :
                 new ObjectParameter("ClientID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("CreateRepairRequest", typeIDParameter, issueTypeIDParameter, descriptionParameter, clientIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("CreateRepairRequest", typeIDParameter, issueTypeIDParameter, clientIDParameter);
+        }
+    
+        public virtual ObjectResult<GetTechniciansWithRequestCount_Result> GetTechniciansWithRequestCount()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetTechniciansWithRequestCount_Result>("GetTechniciansWithRequestCount");
         }
     }
 }

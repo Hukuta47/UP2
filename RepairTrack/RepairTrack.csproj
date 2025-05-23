@@ -81,6 +81,9 @@
     <Compile Include="Database\Feedback.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Database\GetTechniciansWithRequestCount_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\Issue.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -134,15 +137,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Roles\Client\RequestFullInfoPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\Roles\Manager\DashboardManagerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Roles\Manager\SelectTechnicianWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Roles\Technician\DashboardTechnicianPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Roles\Technician\OpenRquestWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -161,14 +168,17 @@
     <Compile Include="Pages\Roles\Client\DashboardClient.xaml.cs">
       <DependentUpon>DashboardClient.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Roles\Client\RequestFullInfoPage.xaml.cs">
-      <DependentUpon>RequestFullInfoPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Roles\Manager\DashboardManagerPage.xaml.cs">
       <DependentUpon>DashboardManagerPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Roles\Manager\SelectTechnicianWindow.xaml.cs">
+      <DependentUpon>SelectTechnicianWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Roles\Technician\DashboardTechnicianPage.xaml.cs">
       <DependentUpon>DashboardTechnicianPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Roles\Technician\OpenRquestWindow.xaml.cs">
+      <DependentUpon>OpenRquestWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -203,21 +213,20 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Database\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model.Context.cs</LastGenOutput>
       <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Database\Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

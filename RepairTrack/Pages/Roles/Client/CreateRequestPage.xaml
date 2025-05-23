@@ -10,12 +10,10 @@
 
     <Grid>
 		<StackPanel>
-			<TextBlock Text="Устройство"/>
-			<ComboBox Name="ComboBox_Device"/>
-			<TextBlock Text="Проблема"/>
-			<ComboBox Name="ComboBox_Issue"/>
-			<TextBlock Text="Описание проблемы"/>
-			<TextBox Name="TextBox_Desription" AcceptsReturn="True"/>
+			<TextBlock Text="Устройство" Style="{StaticResource Title}"/>
+			<ComboBox Name="ComboBox_Device" SelectedValuePath="ID" DisplayMemberPath="Name" SelectedIndex="0" SelectionChanged="ComboBox_Device_SelectionChanged"/>
+			<TextBlock Text="Проблема" Style="{StaticResource Title}"/>
+			<ComboBox Name="ComboBox_Issue" SelectedValuePath="IssueID" DisplayMemberPath="Name"/>
 			<Button Content="Отправить" Click="CreateRequest_Button"/>
 			<Button Content="Отмена" Click="Cancel_Click"/>
 		</StackPanel>

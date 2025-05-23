@@ -10,9 +10,9 @@
 
 	<Border Background="#ffffff">
 		<StackPanel>
-			<TextBlock Text="логин"/>
+			<TextBlock Text="логин" Style="{StaticResource Title}"/>
 			<TextBox Name="Textbox_Username"/>
-			<TextBlock Text="пароль"/>
+			<TextBlock Text="пароль" Style="{StaticResource Title}"/>
 			<PasswordBox Name="PasswordBox_Password"/>
 			<Button Content="вход" Click="Login_Click"/>
 			<Button Content="регистрация" Click="Registartion_Click"/>
